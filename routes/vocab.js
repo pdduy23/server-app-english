@@ -8,7 +8,7 @@ router.post('/add', async (req, res) => {
 
     let minCount
 
-    await Vocab.find().sort({ count: 1 }).then(res => minCount = res[0].count)
+    await Vocab.find().sort({ count: 1 }).then(res => minCount = res[0].count).catch(err => console.log(err))
 
     await Vocab.findOne({ word: word }).then(async exist => {
         if (exist) {
@@ -28,7 +28,7 @@ router.post('/add', async (req, res) => {
 
             return res.json({ success: true, message: 'Added new word.', newVocab })
         }
-    })
+    }).catch(err => console.log(err))
 
 })
 
@@ -41,7 +41,7 @@ router.get('/getword', async (req, res) => {
         })
 
         return res.json({ success: true, vocab: response })
-    })
+    }).catch(err => console.log(err))
 })
 
 module.exports = router
