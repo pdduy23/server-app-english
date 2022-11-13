@@ -22,7 +22,7 @@ router.post('/add', async (req, res) => {
             const newVocab = new Vocab({
                 word,
                 define,
-                count: minCount
+                count: minCount || 0
             })
             await newVocab.save()
 
