@@ -34,7 +34,7 @@ router.post('/add', async (req, res) => {
 
 router.get('/getword', async (req, res) => {
 
-    await Vocab.find().sort({ count: 1 }).limit(5).then(response => {
+    await Vocab.find().sort({ count: 1 }).limit(1).then(response => {
 
         response.map(async (vocab) => {
             await Vocab.findOneAndUpdate({ _id: vocab._id }, { count: vocab.count + 1 }, { new: true })
